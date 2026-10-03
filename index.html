@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Vamsi Krishna Reddy Mallampati — Senior UX Designer portfolio">
+<title>Vamsi Mallampati Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a design-system "specimen sheet" — blueprint grid ground, work presented as annotated components with redline specs */
+:root{
+  --bg:#EDF0F2; --surface:#FFFFFF; --ink:#111A24; --muted:#56616E; --line:#CBD2DA;
+  --accent:#2F4FD8; --accent-ink:#FFFFFF; --mark:#F0A419; --grid:rgba(47,79,216,.07);
+  --display:"Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --body:"Instrument Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, Menlo, monospace;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0D131B; --surface:#151D28; --ink:#E8ECF2; --muted:#98A3B2; --line:#2A3544;
+  --accent:#7D95FF; --accent-ink:#0D131B; --mark:#F5B43A; --grid:rgba(125,149,255,.07); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0D131B; --surface:#151D28; --ink:#E8ECF2; --muted:#98A3B2; --line:#2A3544;
+  --accent:#7D95FF; --accent-ink:#0D131B; --mark:#F5B43A; --grid:rgba(125,149,255,.07); color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 var(--body);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:32px 32px;overflow-x:hidden}
+.wrap{max-width:1140px;margin:0 auto;padding-inline:clamp(16px,4vw,40px)}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;line-height:1.05;margin:0}
+.mono{font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+
+/* nav */
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;backdrop-filter:blur(12px);
+  background:color-mix(in srgb,var(--bg) 78%,transparent);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:16px;height:60px}
+.logo{font-family:var(--display);font-weight:800;font-size:1.15rem;text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo i{width:10px;height:10px;border-radius:3px;background:var(--accent);display:inline-block;transition:transform .5s cubic-bezier(.5,1.8,.4,1)}
+.logo:hover i{transform:rotate(225deg) scale(1.3)}
+.links{margin-left:auto;display:flex;gap:4px}
+.links a{text-decoration:none;font-size:.9rem;padding:6px 12px;border-radius:999px;transition:background .2s}
+.links a:hover,.links a.on{background:var(--surface)}
+.tbtn{border:1px solid var(--line);background:var(--surface);color:var(--ink);width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:1rem}
+@media(max-width:640px){.links{display:none}.tbtn{margin-left:auto}}
+
+/* hero */
+.hero{padding-block:clamp(48px,9vw,110px) 40px;display:grid;grid-template-columns:1.3fr 1fr;gap:48px;align-items:center}
+@media(max-width:860px){.hero{grid-template-columns:1fr}}
+.hero h1{font-size:clamp(2.6rem,7vw,5.4rem);font-weight:800;letter-spacing:-.03em}
+.hero h1 .w{display:inline-block;animation:rise .8s cubic-bezier(.2,.8,.2,1) both}
+.hero h1 em{font-style:normal;color:var(--accent);position:relative}
+.hero h1 em::after{content:"";position:absolute;left:0;right:0;bottom:.06em;height:.12em;background:var(--mark);transform-origin:left;animation:draw .9s .9s cubic-bezier(.7,0,.2,1) both;z-index:-1}
+@keyframes rise{from{transform:translateY(.4em);opacity:.0}}
+@keyframes draw{from{transform:scaleX(0)}}
+.lede{font-size:1.15rem;color:var(--muted);max-width:56ch;margin:22px 0 28px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;font-weight:600;text-decoration:none;border:1px solid var(--ink);cursor:pointer;font:600 .95rem var(--body);transition:transform .2s}
+.btn.pri{background:var(--ink);color:var(--bg)}
+.btn.sec{background:transparent;color:var(--ink)}
+.btn span{transition:transform .25s}
+.btn:hover span{transform:translateX(4px)}
+.status{display:inline-flex;align-items:center;gap:8px;margin-bottom:20px}
+.dot{width:8px;height:8px;border-radius:50%;background:#2DB36A;box-shadow:0 0 0 0 rgba(45,179,106,.5);animation:ping 2s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 10px rgba(45,179,106,0)}100%{box-shadow:0 0 0 0 rgba(45,179,106,0)}}
+
+/* specimen card (hero interactive) */
+.spec{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px;aspect-ratio:1/1.05;max-width:100%;overflow:hidden;transform-style:preserve-3d;transition:transform .2s ease-out}
+.spec .mono{display:flex;justify-content:space-between}
+.stage{position:absolute;inset:56px 22px 70px}
+.blk{position:absolute;border-radius:10px;transition:all .7s cubic-bezier(.6,0,.2,1)}
+.b1{background:var(--accent)}.b2{background:var(--mark)}.b3{background:var(--ink)}.b4{border:2px dashed var(--accent)}
+.redline{position:absolute;font:500 .7rem var(--mono);color:#E5484D;transition:all .7s cubic-bezier(.6,0,.2,1)}
+.tabs{position:absolute;left:22px;right:22px;bottom:20px;display:flex;gap:6px;flex-wrap:wrap}
+.tabs button{flex:1;font:500 .72rem var(--mono);text-transform:uppercase;letter-spacing:.05em;padding:8px 4px;border-radius:8px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;transition:all .2s}
+.tabs button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-block:1px solid var(--line);margin-block:24px 0}
+.stats div{padding:22px 18px;border-right:1px solid var(--line)}
+.stats div:last-child{border-right:0}
+.stats b{display:block;font:800 clamp(2rem,4vw,2.8rem)/1 var(--display);font-variant-numeric:tabular-nums}
+@media(max-width:640px){.stats{grid-template-columns:1fr 1fr}.stats div:nth-child(2){border-right:0}.stats div:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+
+section{padding-block:clamp(56px,9vw,100px)}
+.shead{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:16px;margin-bottom:36px}
+.shead h2{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:800;letter-spacing:-.02em}
+
+/* filters + cases */
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.chip{font:500 .85rem var(--body);padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;transition:all .2s}
+.chip.on{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.cases{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+@media(max-width:760px){.cases{grid-template-columns:1fr}}
+.case{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;cursor:pointer;text-align:left;color:var(--ink);font:inherit;padding:0;display:flex;flex-direction:column;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,opacity .3s}
+.case:hover{transform:translateY(-6px);box-shadow:0 22px 40px -24px rgba(17,26,36,.45)}
+.case.hide{display:none}
+.thumb{aspect-ratio:16/10;position:relative;overflow:hidden;max-width:100%}
+.thumb canvas{width:100%;height:100%;display:block}
+.case .body{padding:20px 22px 22px;display:grid;gap:8px}
+.case h3{font-size:1.45rem;font-weight:600}
+.case p{margin:0;color:var(--muted)}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.tags span{font:500 .7rem var(--mono);text-transform:uppercase;padding:3px 8px;border-radius:6px;background:var(--bg);color:var(--muted)}
+.open{display:flex;justify-content:space-between;align-items:center;margin-top:8px;font-weight:600}
+.open i{font-style:normal;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);transition:all .3s}
+.case:hover .open i{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);transform:rotate(-45deg)}
+
+/* modal */
+dialog{border:0;padding:0;background:transparent;max-width:min(860px,calc(100vw - 32px));width:100%;color:var(--ink)}
+dialog::backdrop{background:rgba(8,12,18,.55);backdrop-filter:blur(4px)}
+dialog[open] .sheet{animation:pop .45s cubic-bezier(.2,.9,.2,1)}
+@keyframes pop{from{transform:translateY(30px) scale(.97);opacity:0}}
+.sheet{background:var(--surface);border-radius:20px;padding:clamp(22px,4vw,40px);max-height:86vh;overflow:auto;border:1px solid var(--line)}
+.sheet h3{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:800;margin:6px 0 14px}
+.meta{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding-block:16px;border-block:1px solid var(--line);margin-bottom:18px}
+.meta div{min-width:0}
+@media(max-width:560px){.meta{grid-template-columns:1fr}}
+.sheet h4{font:600 .8rem var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin:22px 0 8px}
+.sheet ul{padding-left:20px;margin:0}
+.sheet li{margin-bottom:6px}
+.close{float:right;border:1px solid var(--line);background:var(--bg);color:var(--ink);width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:1.1rem;transition:transform .3s}
+.close:hover{transform:rotate(90deg)}
+.steps{display:flex;gap:6px;flex-wrap:wrap}
+.steps span{padding:6px 12px;border-radius:999px;border:1px dashed var(--accent);font-size:.85rem}
+
+/* timeline */
+.tl{display:grid;gap:0}
+.job{display:grid;grid-template-columns:170px 1fr;gap:24px;padding-block:22px;border-top:1px solid var(--line);cursor:pointer}
+.job:last-child{border-bottom:1px solid var(--line)}
+.job h3{font-size:1.3rem;font-weight:600;display:flex;justify-content:space-between;gap:12px}
+.job h3 i{font-style:normal;transition:transform .3s;color:var(--accent)}
+.job.on h3 i{transform:rotate(45deg)}
+.job .role{color:var(--muted)}
+.job .more{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.2,.8,.2,1)}
+.job.on .more{grid-template-rows:1fr}
+.job .more>div{overflow:hidden}
+.job ul{margin:12px 0 0;padding-left:18px;color:var(--muted)}
+.job:hover h3{color:var(--accent)}
+@media(max-width:640px){.job{grid-template-columns:1fr;gap:4px}}
+
+/* skills marquee + grid */
+.marq{overflow:hidden;border-block:1px solid var(--line);padding-block:18px;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.marq div{display:flex;gap:40px;width:max-content;animation:mq 40s linear infinite;font:600 clamp(1.4rem,3vw,2rem) var(--display)}
+.marq:hover div{animation-play-state:paused}
+.marq span:nth-child(odd){color:var(--accent)}
+@keyframes mq{to{transform:translateX(-50%)}}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px}
+@media(max-width:760px){.cols{grid-template-columns:1fr}}
+.col{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;min-width:0}
+.col h3{font-size:1.1rem;font-weight:600;margin-bottom:12px}
+.pills{display:flex;flex-wrap:wrap;gap:6px}
+.pills span{font-size:.85rem;padding:5px 11px;border-radius:999px;border:1px solid var(--line);transition:all .2s}
+.pills span:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+
+/* contact */
+.contact{background:var(--ink);color:var(--bg);border-radius:24px;padding:clamp(28px,6vw,64px);display:grid;gap:24px;position:relative;overflow:hidden}
+.contact h2{font-size:clamp(2.2rem,6vw,4.2rem);font-weight:800;letter-spacing:-.03em}
+.contact .mono{color:color-mix(in srgb,var(--bg) 65%,transparent)}
+.contact .btn{border-color:var(--bg);color:var(--bg)}
+.contact .btn.pri{background:var(--bg);color:var(--ink)}
+.mail{font:500 clamp(1rem,2.6vw,1.5rem) var(--mono);word-break:break-all}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,120px);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:999px;transition:transform .4s cubic-bezier(.2,.9,.2,1);z-index:50;font-weight:500}
+.toast.show{transform:translate(-50%,0)}
+footer{padding-block:32px 48px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+/* reveal + cursor */
+.rv{transition:transform .8s cubic-bezier(.2,.8,.2,1),opacity .8s}
+.rv.pre{transform:translateY(24px);opacity:.35}
+#cur{position:fixed;left:0;top:0;width:26px;height:26px;border:1.5px solid var(--accent);border-radius:50%;pointer-events:none;z-index:99;transform:translate(-50%,-50%);transition:width .25s,height .25s,background .25s;mix-blend-mode:normal}
+#cur.big{width:56px;height:56px;background:color-mix(in srgb,var(--accent) 15%,transparent)}
+@media(hover:none){#cur{display:none}}
+.bar{position:fixed;top:0;left:0;height:3px;background:var(--accent);z-index:30;width:0}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv.pre{transform:none;opacity:1}#cur{display:none}}
+</style>
+</head>
+<body>
+
+<div class="bar" id="bar"></div>
+<div id="cur"></div>
+
+<nav><div class="wrap">
+  <a class="logo" href="#top"><i></i>Vamsi.</a>
+  <div class="links">
+    <a href="#work">Work</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
+  </div>
+  <button class="tbtn" id="theme" aria-label="Toggle dark mode">◐</button>
+</div></nav>
+
+<main id="top">
+<div class="wrap">
+  <header class="hero">
+    <div>
+      <div class="status mono"><span class="dot"></span>Open to Sr Product / UX roles · Hyderabad</div>
+      <h1 id="h1"><span class="w">Designing</span> <span class="w">enterprise</span> <span class="w">tools</span> <span class="w">that</span> <span class="w">feel</span> <span class="w"><em>simple</em>.</span></h1>
+      <p class="lede">I'm Vamsi Krishna Reddy Mallampati, a Senior UX Designer with 9+ years across telecom, fintech, networking and SaaS. I turn frontline insight and business goals into accessible, measurable product experiences.</p>
+      <div class="cta">
+        <a class="btn pri mag" href="#work">See case studies <span>→</span></a>
+        <a class="btn sec mag" href="https://www.linkedin.com/in/vamsi-reddy-a3757a107/" target="_blank" rel="noopener">LinkedIn <span>↗</span></a>
+      </div>
+    </div>
+    <div class="spec" id="spec" aria-label="Interactive layout specimen">
+      <div class="mono"><span>Specimen · <b id="specname">Gridwall</b></span><span>8pt grid</span></div>
+      <div class="stage" id="stage">
+        <div class="blk b1"></div><div class="blk b2"></div><div class="blk b3"></div><div class="blk b4"></div>
+        <div class="redline" id="rl1"></div><div class="redline" id="rl2"></div>
+      </div>
+      <div class="tabs" id="tabs">
+        <button class="on" data-l="0">Gridwall</button><button data-l="1">Dashboard</button><button data-l="2">A/B Test</button><button data-l="3">POS Flow</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="stats rv">
+    <div><b data-n="9">0</b><span class="mono">Years in UX</span></div>
+    <div><b data-n="35" data-s="%">0</b><span class="mono">Quarterly revenue growth, POS</span></div>
+    <div><b data-n="40" data-s="%">0</b><span class="mono">Engagement lift, Temenos</span></div>
+    <div><b data-n="6">0</b><span class="mono">Products on one design system</span></div>
+  </div>
+</div>
+
+<section id="work"><div class="wrap">
+  <div class="shead rv">
+    <div><div class="mono">Selected work · 2019 — 2026</div><h2>Case studies</h2></div>
+    <div class="filters" id="filters">
+      <button class="chip on" data-f="all">All</button><button class="chip" data-f="enterprise">Enterprise</button><button class="chip" data-f="systems">Design systems</button><button class="chip" data-f="ai">AI</button><button class="chip" data-f="growth">Experimentation</button>
+    </div>
+  </div>
+  <div class="cases" id="cases"></div>
+</div></section>
+
+<section id="experience"><div class="wrap">
+  <div class="shead rv"><div><div class="mono">Six companies · two countries</div><h2>Experience</h2></div><span class="mono">Tap a row to expand</span></div>
+  <div class="tl" id="tl"></div>
+</div></section>
+
+<section id="skills" style="padding-top:0">
+  <div class="marq" aria-hidden="true"><div id="marq"></div></div>
+  <div class="wrap">
+    <div class="cols">
+      <div class="col rv"><div class="mono">Practice</div><h3>Core skills</h3><div class="pills" id="p1"></div></div>
+      <div class="col rv"><div class="mono">Toolkit</div><h3>Tools &amp; AI</h3><div class="pills" id="p2"></div></div>
+      <div class="col rv"><div class="mono">Learning</div><h3>Education</h3>
+        <div style="display:grid;gap:12px">
+          <div><b>MA, Human-Computer Interaction</b><br><span class="mono">Tallinn University, Estonia · 2021–24</span></div>
+          <div><b>Fundamentals of Interaction Design</b><br><span class="mono">ImaginXP · 2019</span></div>
+          <div><b>Bachelor of Fine Arts</b><br><span class="mono">Osmania University · 2013–18</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact"><div class="wrap">
+  <div class="contact rv">
+    <div class="mono">Contact</div>
+    <h2>Let's build something people actually enjoy using.</h2>
+    <div class="mail" id="mail">mallampati.vamsi@gmail.com</div>
+    <div class="cta">
+      <button class="btn pri mag" id="copy">Copy email <span>⧉</span></button>
+      <a class="btn sec mag" href="https://figmashort.link/S8MnWh" target="_blank" rel="noopener">Figma portfolio <span>↗</span></a>
+      <a class="btn sec mag" href="https://www.linkedin.com/in/vamsi-reddy-a3757a107/" target="_blank" rel="noopener">LinkedIn <span>↗</span></a>
+    </div>
+  </div>
+  <footer class="mono"><span>© 2026 Vamsi Krishna Reddy Mallampati</span><span>Hyderabad, India · IST</span></footer>
+</div></section>
+</main>
+
+<dialog id="dlg"><div class="sheet" id="sheet"></div></dialog>
+<div class="toast" id="toast">Email copied</div>
+
+<script>
+const CASES=[
+ {id:"verizon",f:["enterprise","ai"],co:"Verizon",yr:"2024 — Present",role:"Senior UX Designer",title:"Promotions & Offers for retail Point-of-Sale",
+  sum:"UX strategy for the offers vertical of a CXO-led POS program, including the Flex 2.0 Combined Gridwall.",
+  tags:["Telecom","POS","AI-enabled"],hue:0,
+  problem:"Retail reps juggle device, plan and promotion rules while a customer waits. Offers were scattered across touchpoints, which slowed the sale and caused missed eligibility.",
+  process:["Call-center visits","Your Voice Matters surveys","Ecosystem mapping","Combined Gridwall concepts","Approach validations","Delivery with engineering"],
+  did:["Owned UX strategy and execution for Promotions & Offers within the POS initiative","Ran call-center visits and survey synthesis to surface frontline pain points","Designed Flex 2.0 Combined Gridwall, bringing devices and offers into one browsing surface","Contributed to AI-enabled POS workflows across 3 user touchpoints","Aligned 10+ stakeholders across product, engineering, operations and leadership"],
+  out:["Program contributed to 30–35% quarterly revenue growth","Led 6+ knowledge-sharing sessions to raise team UX maturity"]},
+ {id:"temenos",f:["enterprise","systems"],co:"Temenos",yr:"2022 — 2023",role:"Senior UI & UX Designer",title:"Banking platform interaction redesign",
+  sum:"Redesigned key interactions in a core banking product and raised accessibility across 100+ screens.",
+  tags:["Fintech","Accessibility","UUX DS"],hue:1,
+  problem:"Dense banking workflows had inconsistent patterns and accessibility gaps, which hurt engagement and slowed handoff to engineering.",
+  process:["Stakeholder alignment","Interaction audit","Redesign","Design reviews ×2","Accessibility pass"],
+  did:["Aligned UX strategy with 4+ product, engineering and business stakeholders","Rebuilt key interactions using 50+ UUX Design System components","Presented 6+ concepts and iterated through 2 review cycles","Improved accessibility and interaction patterns across 100+ screens"],
+  out:["40% increase in user engagement during initial testing","Faster, more consistent development handoff"]},
+ {id:"cisco",f:["enterprise","systems"],co:"Cisco",yr:"2019 — 2021",role:"UI & UX Designer",title:"One design system for six products",
+  sum:"Led the design system for six in-house networking products and redesigned the core dashboard.",
+  tags:["Networking","Design system","Dashboard"],hue:2,
+  problem:"Six internal products had drifted apart visually and behaviourally, so every new screen meant re-deciding basics.",
+  process:["Component inventory","Token & pattern definition","Dashboard redesign","Agile delivery"],
+  did:["Led the shared design system with product designers across 6 products","Redesigned the core dashboard across 50+ screens and workflows","Aligned the dashboard with the wider product ecosystem","Worked with 6+ stakeholders in an Agile team"],
+  out:["Consistent, scalable UI across the product family","A single dashboard language shared by every product"]},
+ {id:"speero",f:["growth"],co:"Speero by CXL",yr:"2021 — 2023",role:"UI/UX Designer · Tallinn",title:"Conversion experiments for 10+ clients",
+  sum:"Turned UX audits into test-ready designs for client websites and apps across industries.",
+  tags:["CRO","A/B testing","Research"],hue:3,
+  problem:"Clients had audit findings but no clear path from insight to a test they could ship and measure.",
+  process:["Heuristic audit","Recommendations","Variant design","Test handoff"],
+  did:["Delivered UX and visual design across 10+ client websites and mobile apps","Designed 20+ A/B test variations with strategists and PMs","Translated audits into 50+ actionable design recommendations"],
+  out:["A repeatable insight-to-experiment pipeline for clients"]},
+ {id:"purple",f:["growth"],co:"PurpleTalk",yr:"2017 — 2019",role:"UI & UX Designer",title:"Modular product kit & campaigns",
+  sum:"Built customizable product modules for the strategy team and campaign visuals for client apps.",
+  tags:["Product modules","Visual design"],hue:4,
+  problem:"Each client pitch needed tailored product flows, built from scratch every time.",
+  process:["Module definition","Visual system","Campaign design"],
+  did:["Designed 6+ customizable product modules for varied client needs","Designed campaign visuals across client applications"],
+  out:["30% increase in engagement and retention across client apps"]}
+];
+const JOBS=[
+ ["Jun 2024 — Now","Verizon","Senior UX Designer · India",["Own UX for Promotions & Offers in a CXO-led POS initiative (30–35% quarterly revenue growth)","Frontline research via call-center visits and surveys","AI-enabled POS across 3 touchpoints; 10+ stakeholders"]],
+ ["Sep 2022 — Jan 2023","Temenos","Senior UI & UX Designer · India",["40% engagement lift in initial testing","50+ UUX components; accessibility across 100+ screens"]],
+ ["Oct 2021 — Jan 2023","Speero by CXL","UI/UX Designer · Tallinn, Estonia",["10+ client sites and apps","20+ A/B variations; 50+ audit recommendations"]],
+ ["Oct 2019 — Aug 2021","Cisco","UI & UX Designer · India",["Design system for 6 in-house products","Core dashboard redesign across 50+ screens"]],
+ ["Oct 2017 — Sep 2019","PurpleTalk","UI & UX Designer · India",["Campaign visuals: 30% engagement and retention lift","6+ customizable product modules"]],
+ ["Jun 2016 — Jun 2017","Digital Lync","Visual Designer · India",["50+ marketing and campaign assets"]]
+];
+const SK=["UX Design","User-Centered Design","Research Methods","Information Architecture","Interaction Design","User Flows","Journey Mapping","Wireframing","Rapid Prototyping","Usability Testing","Accessibility","Design Systems","Design Thinking","Stakeholder Management","Agentic AI Integration","Agile"];
+const TL=["Figma","Sketch","Miro","Photoshop","Illustrator","Figma AI","Claude","Gemini","NotebookLM"];
+const $=s=>document.querySelector(s);
+const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* hero word stagger */
+document.querySelectorAll("#h1 .w").forEach((w,i)=>w.style.animationDelay=(i*90)+"ms");
+
+/* specimen layouts [x,y,w,h] in % */
+const L=[
+ {n:"Gridwall",b:[[0,0,48,46],[52,0,48,46],[0,54,48,46],[52,54,48,46]],r:["4 × card / 16 gap",["0%","48%"]],r2:"24px radius"},
+ {n:"Dashboard",b:[[0,0,100,18],[0,24,30,76],[34,24,66,40],[34,70,66,30]],r:["nav · 64px",["0%","20%"]],r2:"sidebar 240"},
+ {n:"A/B Test",b:[[0,0,48,100],[52,0,48,100],[6,70,36,14],[58,62,36,22]],r:["Control  |  Variant B",["0%","-2%"]],r2:"CTA +8px"},
+ {n:"POS Flow",b:[[0,30,22,40],[26,30,22,40],[52,30,22,40],[78,30,22,40]],r:["step 1 → 4",["0%","20%"]],r2:"offer applied"}
+];
+const blks=[...document.querySelectorAll(".blk")];
+function lay(i){const l=L[i];$("#specname").textContent=l.n;
+ blks.forEach((b,k)=>{const[x,y,w,h]=l.b[k];Object.assign(b.style,{left:x+"%",top:y+"%",width:w+"%",height:h+"%"})});
+ Object.assign($("#rl1").style,{left:"0",top:"-22px"});$("#rl1").textContent="⟷ "+l.r[0];
+ Object.assign($("#rl2").style,{right:"0",bottom:"-22px",textAlign:"right"});$("#rl2").textContent=l.r2;
+ document.querySelectorAll("#tabs button").forEach((t,k)=>t.classList.toggle("on",k===i));}
+let li=0,auto=setInterval(()=>lay(li=(li+1)%4),3200);lay(0);
+$("#tabs").onclick=e=>{const b=e.target.closest("button");if(!b)return;clearInterval(auto);lay(li=+b.dataset.l)};
+const spec=$("#spec");
+spec.addEventListener("pointermove",e=>{if(reduce)return;const r=spec.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;spec.style.transform=`perspective(900px) rotateY(${x*8}deg) rotateX(${-y*8}deg)`});
+spec.addEventListener("pointerleave",()=>spec.style.transform="");
+
+/* case cards with generative thumbnails */
+const cw=$("#cases");
+CASES.forEach(c=>{const b=document.createElement("button");b.className="case rv";b.dataset.f=c.f.join(" ");
+ b.innerHTML=`<div class="thumb"><canvas data-h="${c.hue}"></canvas></div><div class="body"><div class="mono">${c.co} · ${c.yr}</div><h3>${c.title}</h3><p>${c.sum}</p><div class="tags">${c.tags.map(t=>`<span>${t}</span>`).join("")}</div><div class="open"><span>Read case study</span><i>→</i></div></div>`;
+ b.onclick=()=>openCase(c);cw.appendChild(b)});
+function drawThumbs(t=0){document.querySelectorAll(".thumb canvas").forEach(cv=>{const r=cv.getBoundingClientRect();if(!r.width)return;const d=devicePixelRatio||1;cv.width=r.width*d;cv.height=r.height*d;const g=cv.getContext("2d");g.scale(d,d);const W=r.width,H=r.height,h=+cv.dataset.h;
+ const A=css("--accent"),M=css("--mark"),I=css("--ink"),S=css("--bg"),Ln=css("--line");
+ g.fillStyle=S;g.fillRect(0,0,W,H);g.strokeStyle=Ln;g.lineWidth=1;for(let x=0;x<W;x+=24){g.beginPath();g.moveTo(x,0);g.lineTo(x,H);g.stroke()}for(let y=0;y<H;y+=24){g.beginPath();g.moveTo(0,y);g.lineTo(W,y);g.stroke()}
+ const o=Math.sin(t/900+h)*6;const rr=(x,y,w,hh,c,rad=8)=>{g.fillStyle=c;g.beginPath();g.roundRect(x,y,w,hh,rad);g.fill()};
+ const p=W*.08;
+ if(h===0){for(let i=0;i<3;i++){const x=p+i*(W-p*2)/3+6,w=(W-p*2)/3-12;rr(x,H*.18+(i===1?o:0),w,H*.64,i===1?A:css("--surface"));rr(x+12,H*.25+(i===1?o:0),w-24,H*.28,i===1?S:Ln,6);rr(x+12,H*.62+(i===1?o:0),w*.5,10,i===1?M:A,5)}}
+ if(h===1){rr(p,H*.14,W-p*2,H*.14,I);for(let i=0;i<5;i++){rr(p,H*.36+i*H*.1,W-p*2,H*.07,i===2?A:css("--surface"),4)}rr(W*.62+o,H*.36+H*.2,W*.24,H*.07,M,4)}
+ if(h===2){const cs=[A,M,I,css("--surface"),A,M];for(let i=0;i<6;i++){const col=i%3,row=Math.floor(i/3);rr(p+col*(W-p*2)/3+5,H*.15+row*H*.37+(i===4?o:0),(W-p*2)/3-10,H*.32,cs[i],10)}}
+ if(h===3){[0,1].forEach(k=>{const x=p+k*(W-p*2)/2+6,w=(W-p*2)/2-12;rr(x,H*.14,w,H*.72,css("--surface"),10);rr(x+14,H*.24,w-28,H*.22,Ln,6);rr(x+14,H*.6+(k?o:0),k?w*.6:w*.45,H*.12,k?M:A,20)});g.fillStyle=I;g.font="600 12px "+css("--mono");g.fillText("A",p+16,H*.11+4);g.fillText("B",W/2+12,H*.11+4)}
+ if(h===4){for(let i=0;i<4;i++){const a=t/1400+i*1.57;rr(W/2+Math.cos(a)*W*.22-28,H/2+Math.sin(a)*H*.22-28,56,56,[A,M,I,Ln][i],14)}}
+})}
+let thumbsVisible=true;function loop(t){drawThumbs(t);if(!reduce)requestAnimationFrame(loop)}requestAnimationFrame(loop);
+addEventListener("resize",()=>drawThumbs());
+
+/* filters */
+$("#filters").onclick=e=>{const b=e.target.closest(".chip");if(!b)return;document.querySelectorAll(".chip").forEach(c=>c.classList.toggle("on",c===b));const f=b.dataset.f;
+ document.querySelectorAll(".case").forEach(c=>{const show=f==="all"||c.dataset.f.includes(f);c.classList.toggle("hide",!show);if(show&&!reduce){c.animate([{opacity:0,transform:"translateY(14px)"},{opacity:1,transform:"none"}],{duration:450,easing:"cubic-bezier(.2,.8,.2,1)"})}});drawThumbs()};
+
+/* modal */
+const dlg=$("#dlg");
+function openCase(c){$("#sheet").innerHTML=`<button class="close" aria-label="Close">✕</button><div class="mono">${c.co} · ${c.yr}</div><h3>${c.title}</h3>
+ <div class="meta"><div><div class="mono">Role</div>${c.role}</div><div><div class="mono">Domain</div>${c.tags[0]}</div><div><div class="mono">Focus</div>${c.tags.slice(1).join(", ")||c.tags[0]}</div></div>
+ <h4>The problem</h4><p>${c.problem}</p><h4>Process</h4><div class="steps">${c.process.map(s=>`<span>${s}</span>`).join("")}</div>
+ <h4>What I did</h4><ul>${c.did.map(s=>`<li>${s}</li>`).join("")}</ul><h4>Outcome</h4><ul>${c.out.map(s=>`<li><b>${s}</b></li>`).join("")}</ul>`;
+ dlg.showModal();$(".close").onclick=()=>dlg.close()}
+dlg.addEventListener("click",e=>{if(e.target===dlg)dlg.close()});
+
+/* timeline */
+JOBS.forEach(([d,co,r,b],i)=>{const el=document.createElement("div");el.className="job rv"+(i===0?" on":"");el.tabIndex=0;
+ el.innerHTML=`<div class="mono">${d}</div><div><h3>${co}<i>+</i></h3><div class="role">${r}</div><div class="more"><div><ul>${b.map(x=>`<li>${x}</li>`).join("")}</ul></div></div></div>`;
+ el.onclick=()=>el.classList.toggle("on");el.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();el.classList.toggle("on")}};$("#tl").appendChild(el)});
+
+/* skills */
+$("#p1").innerHTML=SK.map(s=>`<span>${s}</span>`).join("");$("#p2").innerHTML=TL.map(s=>`<span>${s}</span>`).join("");
+const mq=["Research","Interaction Design","Design Systems","Accessibility","AI Experiences","Prototyping","Journey Mapping","Usability Testing"];
+$("#marq").innerHTML=[...mq,...mq].map(s=>`<span>${s}</span><span>✦</span>`).join("");
+
+/* reveal (visible at rest; nudge only when below fold) */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.remove("pre");io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll(".rv").forEach(el=>{if(el.getBoundingClientRect().top>innerHeight){el.classList.add("pre");io.observe(el)}});
+
+/* counters */
+const cio=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;cio.unobserve(e.target);const n=+e.target.dataset.n,s=e.target.dataset.s||"+";const t0=performance.now();
+ const step=t=>{const k=Math.min(1,(t-t0)/1200);e.target.textContent=Math.round(n*(1-Math.pow(1-k,3)))+s;if(k<1)requestAnimationFrame(step)};reduce?e.target.textContent=n+s:requestAnimationFrame(step)}));
+document.querySelectorAll("[data-n]").forEach(el=>{el.textContent=el.dataset.n+(el.dataset.s||"+");cio.observe(el)});
+
+/* cursor + magnetic */
+const cur=$("#cur");let cx=0,cy=0,tx=0,ty=0;
+addEventListener("pointermove",e=>{tx=e.clientX;ty=e.clientY;cur.classList.toggle("big",!!e.target.closest("a,button,.job"))});
+(function f(){cx+=(tx-cx)*.2;cy+=(ty-cy)*.2;cur.style.transform=`translate(${cx-13}px,${cy-13}px)`;if(cur.classList.contains("big"))cur.style.transform=`translate(${cx-28}px,${cy-28}px)`;requestAnimationFrame(f)})();
+document.querySelectorAll(".mag").forEach(b=>{b.addEventListener("pointermove",e=>{if(reduce)return;const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.2}px,${(e.clientY-r.top-r.height/2)*.3}px)`});b.addEventListener("pointerleave",()=>b.style.transform="")});
+
+/* scroll progress + active nav */
+const secs=["work","experience","skills","contact"];
+addEventListener("scroll",()=>{const h=document.documentElement;$("#bar").style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+"%";
+ let a="";secs.forEach(s=>{if(document.getElementById(s).getBoundingClientRect().top<innerHeight*.4)a=s});document.querySelectorAll(".links a").forEach(l=>l.classList.toggle("on",l.getAttribute("href")==="#"+a))},{passive:true});
+
+/* theme */
+$("#theme").onclick=()=>{const r=document.documentElement;const dark=r.dataset.theme?r.dataset.theme==="dark":matchMedia("(prefers-color-scheme: dark)").matches;r.dataset.theme=dark?"light":"dark";try{localStorage.setItem("t",r.dataset.theme)}catch(e){}drawThumbs()};
+try{const t=localStorage.getItem("t");if(t)document.documentElement.dataset.theme=t}catch(e){}
+
+/* copy */
+$("#copy").onclick=()=>{const t=$("#toast");const done=m=>{t.textContent=m;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),1800)};
+ navigator.clipboard.writeText("mallampati.vamsi@gmail.com").then(()=>done("Email copied"),()=>{const s=getSelection(),r=document.createRange();r.selectNodeContents($("#mail"));s.removeAllRanges();s.addRange(r);done("Email selected, press Ctrl+C")})};
+</script>
+</body>
+</html>
