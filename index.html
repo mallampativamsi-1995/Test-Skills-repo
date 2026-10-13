@@ -373,6 +373,24 @@ dialog[open] .sheet{animation:up .5s cubic-bezier(.2,.9,.2,1)}
 .cta-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 24px;margin-top:22px;padding:22px 24px;border-radius:16px;border:1px dashed color-mix(in srgb,var(--accent) 35%,transparent);background:var(--accent-soft)}
 .cta-row p{margin:0;color:var(--ink);font-weight:500;max-width:52ch}
 .eyebrow .yrs{margin-left:6px;padding:3px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent);letter-spacing:.06em;font-weight:600}
+
+/* password gate */
+.gate{min-height:calc(100vh - 52px);display:grid;place-items:center;padding:40px 16px}
+.gate-card{width:min(440px,100%);text-align:center;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:clamp(28px,5vw,40px);display:grid;gap:12px;justify-items:center}
+.gate-card .lock{width:60px;height:60px;border-radius:50%;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent);animation:bob 3s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-4px)}}
+.gate-card h2{font-size:clamp(1.6rem,4vw,2rem);font-weight:800}
+.gate-card p{margin:0;color:var(--muted);max-width:34ch}
+.gate-card form{display:flex;gap:8px;width:100%;margin-top:8px}
+.gate-card input{flex:1;min-width:0;height:46px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit}
+.gate-card input:focus{outline:0;border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
+.gate-err{color:#F07167!important;font-size:.88rem;min-height:1.2em}
+.gate-help{font-size:.85rem}
+.gate-help b{color:var(--ink);font-weight:600;user-select:all}
+.shake{animation:shake .45s}
+@keyframes shake{20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.lockpill{position:absolute;left:14px;top:14px;display:inline-flex;align-items:center;gap:6px;font-size:.72rem;font-weight:600;padding:5px 11px;border-radius:999px;background:rgba(10,13,11,.72);color:#fff;backdrop-filter:blur(8px);z-index:2}
 </style>
 </head>
 <body>
@@ -445,169 +463,24 @@ dialog[open] .sheet{animation:up .5s cubic-bezier(.2,.9,.2,1)}
 <button class="totop" id="totop" aria-label="Back to top">↑</button>
 <div class="toast" id="toast">Copied</div>
 <div class="cs" id="cs" data-hash="flex-2" hidden role="dialog" aria-label="Verizon Flex 2.0 case study">
-  <div class="cs-top"><button data-close>‹ Portfolio</button><span class="now" id="csNow">Overview</span><div class="cs-prog" id="csProg"></div></div>
-  <div class="cs-body">
-    <nav class="rail" id="rail" aria-label="Chapters">
-      <a href="#c-top" class="on">Overview</a><a href="#c-context">Context</a><a href="#c-discovery">Discovery</a><a href="#c-research">Research</a><a href="#c-ecosystem">Ecosystem</a><a href="#c-solution">Solution</a><a href="#c-rollout">Rollout</a><a href="#c-results">Results</a><a href="#c-ai">AI strategy</a><a href="#c-next">What's next</a><a href="#c-reflect">Reflection</a>
-    </nav>
-    <div class="cs-main">
-      <section class="cs-hero" id="c-top" data-t="Overview">
-        <div class="eyebrow">Verizon · Point-of-sale · Retail</div>
-        <h1>Flex 2.0</h1>
-        <p class="lede">Redesigning the in-store sales flow for Verizon's retail reps.</p>
-        <div class="meta3">
-          <div><b>Role</b>Senior UX Designer</div>
-          <div><b>I led</b>Ecosystem mapping, Combined Gridwall, AI strategy</div>
-          <div><b>Users</b>Retail reps assisting customers face to face</div>
-        </div>
-        <div class="tldr">
-          <div><b data-c="2500" data-s="+">2,500+</b><span>direct stores run Flex</span></div>
-          <div><b>45 → 25–31</b><span>minutes average handling time</span></div>
-          <div><b data-c="6000" data-s="+">6,000+</b><span>stores in the nationwide release</span></div>
-          <div><b data-c="11" data-s="%">11%</b><span>higher customer satisfaction, per partner feedback</span></div>
-        </div>
-      </section>
-
-      <section class="ch" id="c-context" data-t="Context">
-        <div class="k">Context</div><h2 class="rv">What Flex is, and where it sits</h2>
-        <p class="rv">Flex is a module on Verizon's point-of-sale system. It started as a standard UX project: map the sales flow, then improve it.</p>
-        <div class="g3 rv">
-          <div class="box"><h3>Who uses it</h3><p>Retail reps, assisting customers face to face.</p></div>
-          <div class="box"><h3>Where it sits</h3><p>One touchpoint in a wider ecosystem of apps and channels.</p></div>
-          <div class="box"><h3>How it started</h3><p>As a standard UX project, which grew into an ecosystem view.</p></div>
-        </div>
-        <h2 class="rv" style="margin-top:56px;font-size:clamp(1.5rem,3.4vw,2.2rem)">The scale behind every decision</h2>
-        <div class="g3 rv">
-          <div class="box"><div class="big" data-c="2500" data-s="+">2,500+</div><p>Direct stores running Flex</p></div>
-          <div class="box"><div class="big">15–25</div><p>Customers a day, assisted by each rep</p></div>
-          <div class="box"><div class="big" data-c="45">45</div><p>Minutes, average handling time per customer on Flex 1.0</p></div>
-        </div>
-        <div class="callout rv">At this scale, one minute saved per visit adds up fast.</div>
-      </section>
-
-      <section class="ch" id="c-discovery" data-t="Discovery">
-        <div class="k">Discovery</div><h2 class="rv">Three frictions slowed every sale</h2>
-        <div class="g3 rv">
-          <div class="box"><h3>Content accessibility</h3><p>Reps couldn't surface the right content quickly.</p></div>
-          <div class="box"><h3>Juggling between screens</h3><p>Navigation issues made reps hop between screens.</p></div>
-          <div class="box"><h3>Time to assist</h3><p>Assisting a single customer simply took too long.</p></div>
-        </div>
-      </section>
-
-      <section class="ch" id="c-research" data-t="Research">
-        <div class="k">Research</div><h2 class="rv">Validating the hypothesis with data</h2>
-        <div class="g3 rv">
-          <div class="box"><h3>CMI collaboration</h3><p>Partnered with the Customer Metric Insights team on store and visit data.</p></div>
-          <div class="box"><h3>YVM surveys and interviews</h3><p>Ran Your Voice Matters surveys and spoke with reps.</p></div>
-          <div class="box"><h3>Workshop and prioritization</h3><p>Flex experience analysis, journey mapping, information grouping and feature prioritization.</p></div>
-        </div>
-        <p class="rv" style="margin-top:24px">First data pass: reasons for visit, October to December 2024.</p>
-        <div class="g3 rv"><div class="box"><h3>Device help</h3><p>Top reason for visit</p></div><div class="box"><h3>New customers</h3><p>Reason for visit</p></div><div class="box"><h3>Bill pay</h3><p>Reason for visit</p></div></div>
-        <h2 class="rv" style="margin-top:56px;font-size:clamp(1.5rem,3.4vw,2.2rem)">Four questions to design against</h2>
-        <div class="g2 hmw rv">
-          <div class="box"><p>Organise the information of lines on Flex so that new associates can quickly and easily assist customers?</p></div>
-          <div class="box"><p>Make the newly added items visible on Flex?</p></div>
-          <div class="box"><p>Reduce the customer handling time of the hub and spoke model?</p></div>
-          <div class="box"><p>Provide simplified guidance so associates easily discover the next actions in the sales flow?</p></div>
-        </div>
-      </section>
-
-      <section class="ch" id="c-ecosystem" data-t="Ecosystem">
-        <div class="k">Ecosystem · Journey map</div><h2 class="rv">Mapping the point-of-sale ecosystem</h2>
-        <p class="rv">Before touching screens, I mapped channels, stages and actors to see where Flex sits in the whole journey.</p>
-        <div class="g2 rv" style="margin-bottom:12px">
-          <div class="box"><h3>Channels</h3><p>Retail stores · Indirect stores · Inside sales · D2D sales</p></div>
-          <div class="box"><h3>Also in the ecosystem</h3><p>My Verizon app · verizon.com · Customer Care</p></div>
-        </div>
-        <div class="box rv" style="margin-bottom:12px"><h3>Transaction intents</h3><p>Add a line · Bring your own device · Upgrade · Trade in · Quick accessories · In-store pickup · Change account PIN</p></div>
-        <div class="map rv"><table>
-          <tr><th></th><th>Before</th><th class="s">I · Welcome</th><th class="s">II · Triage</th><th class="s">III · Solution</th><th class="s">IV · Complete</th><th>After</th></tr>
-          <tr><td class="lab">Customer</td><td>Finds the nearest store; browses offers</td><td>Visits; is added to the queue</td><td>Shares the reason for visit</td><td>Chooses plan, device, add-ons</td><td>Signs, pays, asks for receipt</td><td>Sets up, uses, manages; seeks support</td></tr>
-          <tr><td class="lab">Rep</td><td>Walks the floor; shares product info</td><td>Greets and authenticates</td><td>Reviews account, billing, plans, devices</td><td>Adjusts account; guides the choice</td><td>Review, agreements, payment</td><td>Hands over the order</td></tr>
-          <tr><td class="lab">Flex</td><td class="nil"></td><td class="fx"><span class="chip2">Queue</span><span class="chip2">Assisted customer</span></td><td class="fx"><span class="chip2">Reason for visit</span><span class="chip2">ID check</span><span class="chip2">PIN</span><span class="chip2">Profile</span><span class="chip2">Account</span><span class="chip2">Line</span><span class="chip2">Billing</span></td><td class="fx"><span class="chip2">Shop plan</span><span class="chip2">Device</span><span class="chip2">Accessory</span><span class="chip2">Add-on</span></td><td class="fx"><span class="chip2">Order review</span><span class="chip2">Agreement</span><span class="chip2">Payment</span></td><td class="fx"><span class="chip2">ISPU</span><span class="chip2">Curbside</span><span class="chip2">Locker</span><span class="chip2">Same-day</span></td></tr>
-        </table></div>
-        <div class="hint">Scroll sideways on small screens. Outlined cells show where Flex acts.</div>
-      </section>
-
-      <section class="ch" id="c-solution" data-t="Solution">
-        <div class="k">Solution</div><h2 class="rv">The Combined Gridwall</h2>
-        <p class="rv">One surface that brings lines, devices, plans and add-ons together, so reps stop switching screens.</p>
-        <div class="g2 rv">
-          <div class="box"><h3>Organize multi-line information</h3><p>Associates can see every line at a glance.</p></div>
-          <div class="box"><h3>Simplified guidance</h3><p>Only the required next steps are shown.</p></div>
-          <div class="box"><h3>Combined grid-wall</h3><p>With a line-level summary.</p></div>
-          <div class="box"><h3>Quick order creation</h3><p>Reduces customer handling time.</p></div>
-        </div>
-        <div class="sketch rv" id="sketch" aria-label="Simplified layout sketch">
-          <div class="col"><h4>Lines</h4><div class="it" style="--i:0"><b>Line 1</b>Upgrade</div><div class="it" style="--i:1"><b>Line 2</b>New line</div><div class="it" style="--i:2"><b>Line 3</b>Add-on</div></div>
-          <div class="col"><div class="tabs3"><span>Devices</span><span>Plans</span><span>Add-ons</span></div><div class="tiles3"><div class="it" style="--i:3"></div><div class="it acc" style="--i:4"></div><div class="it" style="--i:5"></div><div class="it" style="--i:6"></div><div class="it" style="--i:7"></div><div class="it" style="--i:8"></div></div></div>
-          <div class="col"><h4>Cart</h4><div class="it acc" style="--i:9"><b>2 new</b>Quick order</div></div>
-        </div>
-        <div class="hint">Simplified sketch of the layout, not the final UI.</div>
-      </section>
-
-      <section class="ch" id="c-rollout" data-t="Rollout">
-        <div class="k">Rollout</div><h2 class="rv">Pilot in six stores, then nationwide</h2>
-        <div class="steps4 rv" id="steps">
-          <div class="st"><i>1</i><h3>Modernize</h3><p>Brought the legacy systems up to date first.</p></div>
-          <div class="st"><i>2</i><h3>Closed pilot</h3><p>Tested with a closed group of 6 stores.</p></div>
-          <div class="st"><i>3</i><h3>Iterate</h3><p>Built in the feedback reps gave in the pilot.</p></div>
-          <div class="st"><i>4</i><h3>Release</h3><p>Released nationwide across 6,000+ stores.</p></div>
-        </div>
-      </section>
-
-      <section class="ch" id="c-results" data-t="Results">
-        <div class="k">Results</div><h2 class="rv">Reps preferred Flex 2.0 over Flex 1.0</h2>
-        <div class="box rv" id="bars"><h3>Average handling time</h3>
-          <div class="bars"><div class="bar-row"><span>Flex 1.0</span><i style="--w:100%">45 min</i></div><div class="bar-row new"><span>Flex 2.0</span><i style="--w:62%">25–31 min</i></div></div>
-        </div>
-        <div class="g2 rv" style="margin-top:12px">
-          <div class="box"><h3>Rep feedback after release</h3><ul class="tick"><li>Reps like the overall look and feel</li><li>Line-level information is easy to discover</li><li>Reps prefer Flex 2.0 over Flex 1.0</li></ul></div>
-          <div class="box"><h3>Partner appreciation after launch</h3><ul class="tick"><li>Fewer API calls</li><li>Customer satisfaction improved by 11%</li></ul></div>
-        </div>
-      </section>
-
-      <section class="ch" id="c-ai" data-t="AI strategy">
-        <div class="k">AI strategy</div><h2 class="rv">I proposed AI-driven flows. They couldn't ship. So I pivoted.</h2>
-        <div class="evo rv">
-          <div class="box dim"><span class="tag">Proposed · parked</span><h3>AI-driven</h3><p>AI drives the sales flow itself. It couldn't be scaled, given tech limitations and federal laws.</p></div>
-          <div class="box"><span class="tag ship">Shipped · now</span><h3>AI-assisted</h3><p>Personal Shopper: AI curates a quote from customer data. The rep stays in the conversation.</p></div>
-          <div class="box"><span class="tag next">Next</span><h3>Agentic</h3><p>An intent-based agentic experience across the sales stages.</p></div>
-        </div>
-        <h2 class="rv" style="margin-top:56px;font-size:clamp(1.5rem,3.4vw,2.2rem)">Personal Shopper, an AI layer on the sales flow</h2>
-        <p class="rv">AI analyzes customer data to predict needs and returns a curated quote for the rep to review.</p>
-        <div class="flow rv">
-          <div class="box"><h3>Existing customer <span class="tag">Behavior-based</span></h3><dl><dt>AI reads</dt><dd>Purchase patterns and customer behavior</dd><dt>AI returns</dt><dd>A curated quotation for the rep to review</dd></dl></div>
-          <div class="box"><h3>Prospect <span class="tag">Demographic-based</span></h3><dl><dt>AI reads</dt><dd>Demographic and location-based information</dd><dt>AI returns</dt><dd>Predicted needs and a suitable quote</dd></dl></div>
-        </div>
-        <div class="callout rv">Outcome: an improved experience, with the rep always in control.</div>
-      </section>
-
-      <section class="ch" id="c-next" data-t="What's next">
-        <div class="k">What's next</div><h2 class="rv">An intent-based agentic experience</h2>
-        <p class="rv">AI-assisted prepares the quote. An agent could carry the customer through each stage of the journey.</p>
-        <div class="g4 rv">
-          <div class="box"><h3>Welcome &amp; Identify</h3><p>Recognize the customer and their reason for visit.</p></div>
-          <div class="box"><h3>Triage</h3><p>Pull up account, line and billing context.</p></div>
-          <div class="box"><h3>Solution</h3><p>Assemble plan, device and add-on options.</p></div>
-          <div class="box"><h3>Complete</h3><p>Prepare agreements and payment for review.</p></div>
-        </div>
-        <div class="hint">Concept direction.</div>
-      </section>
-
-      <section class="ch" id="c-reflect" data-t="Reflection">
-        <div class="k">Reflection</div><h2 class="rv">What I'd carry forward</h2>
-        <div class="g3 rv">
-          <div class="box"><h3>Map the system before the screen</h3><p>Seeing where Flex sits in the whole ecosystem shaped every decision.</p></div>
-          <div class="box"><h3>Treat constraints as the brief</h3><p>Tech limits and federal law turned AI-driven into AI-assisted.</p></div>
-          <div class="box"><h3>Design for the scale</h3><p>Across 2,500+ stores, a minute saved per visit compounds.</p></div>
-        </div>
-        <div class="cs-end rv"><h2>Thank you.</h2><p style="color:var(--muted);margin:0">Happy to go deeper on any part of this.</p><button class="btn" data-close>Back to portfolio</button></div>
-      </section>
+  <div class="cs-top"><button data-close>‹ Portfolio</button><span class="now">Protected case study</span><div class="cs-prog"></div></div>
+  <div class="gate">
+    <div class="gate-card">
+      <div class="lock" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+      <div class="eyebrow">Verizon · Protected</div>
+      <h2>Verizon Flex 2.0</h2>
+      <p>This case study covers confidential work. Enter the password to view it.</p>
+      <form id="flexGate" autocomplete="off" novalidate>
+        <label for="flexPw" class="sr">Password</label>
+        <input id="flexPw" type="password" placeholder="Password" aria-describedby="flexErr" required>
+        <button class="btn" type="submit">Unlock</button>
+      </form>
+      <p class="gate-err" id="flexErr" role="alert"></p>
+      <p class="gate-help">Need access? Email <b>mallampati.vamsi@gmail.com</b></p>
     </div>
   </div>
+  <script type="application/json" id="flexLocked">{"it":250000,"salt":"pW3VHyMxlXYR/3ldcOeU7A==","iv":"FkZrnIg5fGDUTAOs","ct":"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"}</script>
 </div>
-
 <div class="cs" id="cs-ai" data-hash="ai-mind" hidden role="dialog" aria-label="AI Mind case study">
   <div class="cs-top"><button data-close>‹ Portfolio</button><span class="now">Overview</span><div class="cs-prog"></div></div>
   <div class="cs-body">
@@ -855,7 +728,7 @@ $("#track").innerHTML=one+one;
 
 /* work */
 const THUMB={
- flex:`<div class="in">
+ flex:`<span class="lockpill"><svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5" fill="none" stroke="currentColor" stroke-width="2.2"/></svg>Password protected</span><div class="in">
    <div class="cover"><small>Verizon · Point-of-sale</small><strong>Flex 2.0<br>Combined Gridwall</strong><em>UX Case Study</em></div>
    <div class="mk" data-p="-.1" style="right:5%;top:14%;width:48%;height:76%;padding:10px;display:grid;grid-template-columns:30% 1fr;gap:8px">
      <div style="display:grid;gap:6px;align-content:start"><div class="bluebar" style="width:60%"></div><div style="height:30px;border-radius:7px;background:#EEF2F6"></div><div style="height:30px;border-radius:7px;background:#6EE7A0"></div><div style="height:30px;border-radius:7px;background:#EEF2F6"></div></div>
@@ -935,12 +808,13 @@ function openCase(id){const cs=document.getElementById(id);if(!cs)return;lastFoc
  cs.setAttribute("tabindex","-1");cs.focus({preventScroll:true})}
 function closeCase(){if(!curCS)return;curCS.hidden=true;curCS.classList.remove("in");curCS=null;document.body.style.overflow="";try{history.replaceState(null,"",location.pathname+location.search)}catch(e){}if(lastFocus&&lastFocus.focus)lastFocus.focus({preventScroll:true})}
 const openFlex=()=>openCase("cs");
-document.querySelectorAll(".cs").forEach(cs=>{
+function initCS(cs){
  cs.querySelectorAll("[data-close]").forEach(b=>b.addEventListener("click",closeCase));
  const secsEl=[...cs.querySelectorAll("section[data-t]")],railA=[...cs.querySelectorAll(".rail a")],now=cs.querySelector(".now"),prog=cs.querySelector(".cs-prog");
- cs.addEventListener("scroll",()=>{const h=cs.scrollHeight-cs.clientHeight;prog.style.width=(cs.scrollTop/h*100)+"%";let cur=secsEl[0];secsEl.forEach(s=>{if(s.getBoundingClientRect().top<innerHeight*.35)cur=s});now.textContent=cur.dataset.t;railA.forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+cur.id))},{passive:true});
+ cs.addEventListener("scroll",()=>{if(!secsEl.length||!now)return;const h=cs.scrollHeight-cs.clientHeight;prog.style.width=(cs.scrollTop/h*100)+"%";let cur=secsEl[0];secsEl.forEach(s=>{if(s.getBoundingClientRect().top<innerHeight*.35)cur=s});now.textContent=cur.dataset.t;railA.forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+cur.id))},{passive:true});
  railA.forEach(a=>a.addEventListener("click",e=>{e.preventDefault();const t=cs.querySelector(a.getAttribute("href"));if(t)cs.scrollTo({top:t.offsetTop-52,behavior:reduce?"auto":"smooth"})}));
-});
+}
+document.querySelectorAll(".cs").forEach(initCS);
 addEventListener("keydown",e=>{if(e.key==="Escape"&&curCS&&!dlg.open)closeCase()});
 {const h=location.hash.slice(1);const m=[...document.querySelectorAll(".cs")].find(c=>c.dataset.hash===h);if(m)openCase(m.id)}
 
@@ -953,6 +827,18 @@ let dl=null;document.querySelectorAll(".cv").forEach(function(a){const label=a.q
    toast("Couldn't save here. Opening the PDF instead");window.open("resume.pdf","_blank")}
   finally{a.classList.remove("busy")}});
 });
+
+/* Flex 2.0 password gate */
+(function(){const f=document.getElementById("flexGate");if(!f)return;const inp=document.getElementById("flexPw"),err=document.getElementById("flexErr"),card=f.closest(".gate-card");
+ const b=x=>Uint8Array.from(atob(x),c=>c.charCodeAt(0));
+ async function dec(pw){const d=JSON.parse(document.getElementById("flexLocked").textContent);const base=await crypto.subtle.importKey("raw",new TextEncoder().encode(pw),"PBKDF2",false,["deriveKey"]);
+  const key=await crypto.subtle.deriveKey({name:"PBKDF2",salt:b(d.salt),iterations:d.it,hash:"SHA-256"},base,{name:"AES-GCM",length:256},false,["decrypt"]);
+  return new TextDecoder().decode(await crypto.subtle.decrypt({name:"AES-GCM",iv:b(d.iv)},key,b(d.ct)))}
+ f.addEventListener("submit",async e=>{e.preventDefault();const pw=inp.value;if(!pw){err.textContent="Enter the password to continue.";inp.focus();return}
+  const btn=f.querySelector("button");btn.disabled=true;btn.textContent="Checking…";err.textContent="";
+  try{const html=await dec(pw);const cs=document.getElementById("cs");cs.innerHTML=html;initCS(cs);openCase("cs")}
+  catch(x){err.textContent="That password didn't work. Check it and try again.";card.classList.remove("shake");void card.offsetWidth;card.classList.add("shake");inp.select();btn.disabled=false;btn.textContent="Unlock"}});
+})();
 </script>
 
 </body>
